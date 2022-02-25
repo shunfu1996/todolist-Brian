@@ -31,7 +31,11 @@
 .card-name {
 
 }
-
+.error-box {
+    display: none;
+    color: red;
+    transition: 1s;
+}
 
 .task-detail-box {
     position: fixed;

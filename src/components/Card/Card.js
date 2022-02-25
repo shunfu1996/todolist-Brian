@@ -10,12 +10,15 @@ import { AiOutlineHome } from 'react-icons/ai';//home
 import { CgMore } from 'react-icons/cg';
 import { MdDateRange } from 'react-icons/md';
 
+import HeadShake from 'react-reveal/HeadShake';
+
 
 export default function Card({ data, setData, submittingStatue, status}) {
     const [add, setAdd] = useState(true)
     const [typeButtonDetail, setTypeButtonDetail] = useState(false)
     const [dateButtonDetail, setDateButtonDetail] = useState(false)
     const [detailButtonDetail, setDetailButtonDetail] = useState(false)
+    let [counter, setCounter] =useState (0)
 
     const handleTaskDetailBox = ele => {
         if(ele === "detail"){
@@ -57,7 +60,19 @@ export default function Card({ data, setData, submittingStatue, status}) {
     
     function addItem(e) {
         e.preventDefault(); // to prevent the web F5
+        const errorMessage = document.querySelector('#error');
         submittingStatue.current = true ;
+        if(!validInput(name)){
+            errorMessage.innerHTML = "Please enter the name!"; //check the input is correct
+            errorMessage.style.display = "block";
+            setCounter(counter+=1)
+        }  else if(!validInput(dueDate)){
+            errorMessage.innerHTML = "Please choose a valid date!";
+            errorMessage.style.display = "block";
+            setCounter(counter+=1)
+        }  else{
+            errorMessage.style.display = "none";
+            submittingStatue.current = true ;
         setData(function(prevData){
             return [
                 {   
@@ -75,13 +90,24 @@ export default function Card({ data, setData, submittingStatue, status}) {
         setType("");
         setDescription("");
         setName("");  
+        setAdd(!add)
         console.log(data)
     }
+} 
+
+function validInput (data) {
+    return data !== null && data !== ''; // the input cannot empty 
+}
 
 
     return(
         <>
             <div className="footer">
+                <HeadShake spy={counter}>
+                    <div id="error" className="error-box" role="alert">
+                        A simple warning alert—check it out!
+                    </div>
+                </HeadShake>
                 <div className="card-box">
                     { add &&
                     <>
@@ -122,7 +148,7 @@ export default function Card({ data, setData, submittingStatue, status}) {
                         </div>
 
                         {dateButtonDetail &&<div className="task-detail-date-box">
-                            <input type="date" className="form-control" id="newTaskDueDate" value={dueDate} onChange={dueDateChange} />
+                            <input type="date" /* className="form-control" */ value={dueDate} onChange={dueDateChange} />
                         </div>}
                         {typeButtonDetail &&<div className="task-detail-box" onClick={() => handleTaskType("work")}>
                             <button className="add-type-button">
