@@ -1,0 +1,102 @@
+.main-body {
+    margin-top: 122px;
+    margin-left: 68px;
+}
+
+.opening p{
+    font-size: 50px;
+    padding: 10px;
+    margin: 0%;
+    display: inline;
+}
+
+.datee {
+    display: inline;
+}
+
+/* .more {
+    border-style: none;
+} */
+
+.more-day{
+    border-style: none;
+    background-color: white;
+}
+
+.time-bar {
+    z-index: 999;
+    border-style: groove;   
+    top: 100px;
+    width: 200px;
+    justify-content: center;
+    background-color: #85C1E9;  
+}
+
+.time-bar button {
+    z-index: 999;
+    background-color: #85C1E9;  
+    border-style: none;
+    width: 200px;
+    height: 50px;
+}
+.time-button:hover {
+    background-color: grey;
+}
+
+
+/* .task:hover {
+    background-color: grey;
+} */
+
+.task {
+    z-index: -1;
+    border-top: solid 1px gray; 
+    border-bottom: solid 1px gray; 
+    height: 50px;
+    line-height: 50px;
+    margin-right: 20px;
+    position: relative;   /* ★ */
+}
+
+.task p {
+    margin: 0%;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.test{
+    float: left;
+}
+
+/* .checkbox {
+
+} */
+
+.star {
+    position: absolute;   /* ★ */
+    top: 50%;             /* ★ */
+    transform: translateY(-50%);    /* ★ */
+}
+
+.type {
+    padding-left: 50px;
+    width: 10%;
+    display: inline-block;
+}
+
+.name {
+    width: 10%;
+    display: inline-block;
+}
+
+.detail {
+    width: 50%;
+    display: inline-block;
+}
+
+.date {
+    width: 10%;
+    float: right;
+}
+  

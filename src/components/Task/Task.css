@@ -1,0 +1,14 @@
+.task-button {
+    border-style: none;
+    cursor: pointer;
+}
+
+.list-name {
+    text-align: center;
+    font-size: 30px;
+}
+
+
+/* .task-bg:hover {
+    background-color: gray ;
+} */

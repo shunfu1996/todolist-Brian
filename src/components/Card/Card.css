@@ -1,0 +1,84 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    margin-left: 68px;
+    width: 90%;
+    /* right: 5%; */
+}
+
+.card-box {
+    border-style: groove;   
+    margin: 0;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.add-task-button{
+    border-style: none;
+}
+
+.card-add-icon .card-dash-icon{
+    margin: 0% 10px;
+}
+
+.task-state{
+    margin: 0% 10px;
+}
+
+
+.card-name {
+
+}
+
+
+.task-detail-box {
+    position: fixed;
+    border-style: groove; 
+    margin-bottom: 320px;
+    height: 240px;
+    width: 250px;
+    right: 7%;
+    display: inline-block;
+    /* justify-content: center; */
+}
+
+.task-detail-date-box {
+    position: fixed;
+    margin-bottom: 100px;
+    right: 7%;
+    display: inline-block;
+}
+
+.task-detail-box p{
+    display: inline;
+}
+
+.task-add-button {
+    margin-left: auto;
+}
+.task-detail {
+    margin: 0 30px;
+}
+.task-date {
+    margin: 0 30px;
+}
+.task-type {
+    margin: 0 30px;
+}
+
+.add-type-button {
+    padding: 25px 0;
+    width: 100%;
+    background-color: #85C1E9; 
+    border-style: none;
+}
+
+.add-type-icon {
+
+}
+
+.add-type-button:hover {
+    background-color: grey;
+}

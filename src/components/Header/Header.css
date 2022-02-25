@@ -1,0 +1,161 @@
+.nav {
+    position: fixed;
+    top: 0%;
+    width: 100%;
+    background-color: #2874A6;
+}
+
+.topnav {
+    top: 0;
+    padding: 10px 50px;
+    position: relative;   
+    display:flex;         
+    align-items: center;  
+    border-bottom-style:solid;
+    border-color: aliceblue;
+}
+
+.button-right {
+    margin-left: auto;
+}
+
+
+.user-button {
+    font-size: 40px;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    background-color: rgb(86, 163, 134);  
+}
+
+.list-right {
+    position: fixed;
+    width: 95%;
+    height: 20px;
+}
+
+.user-list {
+    border-style: groove;   
+    top: 100px;
+    width: 200px;
+    margin-left: auto;  
+    justify-content: center;
+}
+
+.user-list-button {
+    padding: 10px 0;
+    width: 100%;
+    background-color: #85C1E9; 
+    border-style: none;
+}
+.user-button:hover {
+    filter: drop-shadow(0 0 10px grey) drop-shadow(0 0 16px grey) drop-shadow(0 0 25px grey);
+}
+
+.add-user {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #85C1E9; 
+    border-style: none;
+}
+
+.add-user:hover, .user-list-button:hover {
+    background-color: grey;
+}
+
+.bg {
+    background-color: #85C1E9 ;
+    position: fixed;
+    height: 100%;
+    width: 67px;
+}
+
+.leftnav {
+    /* align-items: center ; */
+    /* top: 140px; */
+    position: fixed;
+    width: 0;
+    border-right-style: solid ;
+    border-bottom-style: solid ;
+    background-color: #85C1E9 ;
+    border-color: aliceblue;
+    display: grid;
+    flex-wrap: wrap;
+}
+
+.leftnav:hover {
+    transition:1s;
+    position: fixed;
+    height: 100%;
+    width: 200px;
+    display: grid;
+}
+
+.type-task:hover  {
+    background-color: grey !important;
+    color: beige;
+}
+.add-task:hover  {
+    background-color: grey !important;
+    color: beige;
+}
+/* .add-task:hover .add-icon{
+    transition: all 0.3s !important;
+} */
+
+.leftnav:hover .type-task {
+    position: relative;
+    background-color: white;
+    border-radius: 25px;
+    width: 180px;
+    margin-right: 100px;
+}
+
+.leftnav:hover .add-icon {
+    float: left;
+}
+.leftnav:hover .add-task {
+    transition:1s;
+    width: 200px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    text-align:center;
+}
+
+.leftnav:hover .add-task-text {
+    display: flex;
+    align-items: center;
+    text-align:center;
+    float: left;
+    margin-left: 20px;
+}
+
+.leftnav:hover .type-task-text, .type-icon {
+    display: inline-block;
+    margin: auto 0;
+}
+
+.type-task-text, .add-task-text {
+    transition:1s;
+    display: none;
+}
+
+.type-icon {
+    margin: 0px;
+}
+
+.add-task {
+    border-radius: 50px;
+    margin: 5px;
+    background-color: white;
+}
+
+.type-task {
+    height: 50px;
+    margin: 10px;
+    border-style: none;
+    background-color: #85C1E9 ;
+}
+
+
