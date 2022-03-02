@@ -1,18 +1,19 @@
 import './App.css'
 import { useState, useEffect, useRef } from 'react';
-/* import useLocalStorage from "use-local-storage"; */
+import useLocalStorage from "use-local-storage";
 import Hearder from './components/Header/Header'
 import Body from './components/Body/Body'
 import Card from './components/Card/Card'
 
 function App() {
-  const [data, setData] = /* useLocalStorage */useState(/* "data", */ [{id:'test', name: 'task name:', description: 'task detail:', type: 'work', dueDate: '2022-02-25', status:false }]);
+  const [data, setData] = useLocalStorage/* useState */("data", [/* {id:'test', name: 'task name:', description: 'task detail:', type: 'work', dueDate: '2022-02-25', status:false } */]);
   const [filterTask, setFilterTask] = useState(data);
   const [filtingState, setFilingState] = useState("all")   
   const [isFilter, setIsFilter] = useState(false);
   const [status, setStatus] = useState(false);
-  const [backgroundImage, setBackgroundImage] = useState(null)
-
+  useEffect(() => {
+    setFilterTask(data)
+  },[data])
 
 /*const [numberOfSchool, setNumberOfSchool] = useState((data.filter((task) => task.type === "School")).length)
   const [numberOfWork, setNumberOfWork] = useState((data.filter((task) => task.type === "Work")).length)
@@ -91,7 +92,7 @@ function App() {
   return (
     <>
       <Hearder
-      CardData={data} filterTask={filterTask} setFilterTask={setFilterTask} setIsFilter={setIsFilter}
+      CardData={data} filterTask={filterTask} setFilterTask={setFilterTask} setIsFilter={setIsFilter} setData={setData}
       /* numberOfSchool={numberOfSchool} numberOfWork={numberOfWork} numberOfHome={numberOfHome} numberOfDone={numberOfDone}
       numberOfTodo={numberOfTodo} */ setFilingState={setFilingState} filtingState={filtingState} 
       /* numberOfPast={numberOfPast} numberOfToday={numberOfToday} numberOfFuture={numberOfFuture} */ 

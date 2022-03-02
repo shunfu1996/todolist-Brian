@@ -37,21 +37,23 @@ export default function Task({status, id, name, description, type, dueDate, isFi
 
     return(
         <>
-            <div className="task task-bg">
-                    <div className="test">
+            <div className="task task-bg test">
+                    <div className="task-button">
                         <button onClick={test}>
                             check task
                         </button>
                         <button className="checkbox" onClick={() => handleStatus(id)}>
-                        <IconContext.Provider value={{ size: "25px", className: "checkbox-icon" }}>
-                            {status?<MdCheckBox />:<MdCheckBoxOutlineBlank />}
-                        </IconContext.Provider>
-                        </button>                        
-                        <IconContext.Provider value={{ size: "25px", className: "star" }}>
-                            <BsStar />
-                        </IconContext.Provider>
+                            <IconContext.Provider value={{ size: "25px", className: "checkbox-icon" }}>
+                                {status?<MdCheckBox />:<MdCheckBoxOutlineBlank />}
+                            </IconContext.Provider>
+                        </button>    
+                        <button className="checkbox" onClick={() => handleStatus(id)}>
+                            <IconContext.Provider value={{ size: "25px", className: "star" }}>
+                                <BsStar />
+                            </IconContext.Provider>
+                        </button>                    
                     </div>
-                    <div>
+                    <div className="text">
                         <p className="type">{type}</p>
                         <p className="name">{name}</p>
                         {!showDetail ?<p className="detail">{description}</p>:

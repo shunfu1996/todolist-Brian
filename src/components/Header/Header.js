@@ -7,11 +7,14 @@ import { MdWorkOutline } from 'react-icons/md';//work
 import { AiOutlineHome } from 'react-icons/ai';//home
 
 
-export default function Header({ CardData, setFilterTask, filterTask, numberOfSchool,
+export default function Header({ CardData, setData, setFilterTask, filterTask, numberOfSchool,
     numberOfHome, numberOfWork, numberOfDone, numberOfTodo, setFilingState,
     filtingState, numberOfPast, numberOfToday, numberOfFuture }) {
     const [ userName, setUserName ] = useState("GUEST")
     const [ userList, setUserbutton ] = useState(false)
+    const [ showTypeSchool, setShowTypeSchool ] = useState(false)
+    const [ showTypeWork, setShowTypeWork ] = useState(false)
+    const [ showTypeHome, setShowTypeHome ] = useState(false)
 
 
     const handleChooseUserList = () => {
@@ -23,9 +26,34 @@ export default function Header({ CardData, setFilterTask, filterTask, numberOfSc
     }
 
 
+    const handleType = type => {
+        if(type === "School"){
+            // setFilterTask(CardData.filter((task) => task.type === "school"))
+            setShowTypeSchool(true)
+            handleShowTaskList("School")
+        }else if(type === "Work"){
+            // setFilterTask(CardData.filter((task) => task.type === "work"))
+            setShowTypeWork(true)
+            handleShowTaskList("Work")
+        }else if(type === "Home"){
+            setShowTypeHome(true)
+            handleShowTaskList("Home")
+        }
+        return 
+    }
+
+    const handleShowTaskList = ele => {
+        if(ele === "School"){
+            setFilterTask(CardData.filter((task) => task.type === "School"))
+        }else if(ele === "Work"){
+            setFilterTask(CardData.filter((task) => task.type === "Work"))
+        }else if(ele === "Home"){
+            setFilterTask(CardData.filter((task) => task.type === "Home"))
+        }
+    }
     ///
 
-    const handleType = (type) =>{
+    /* const handleType = (type) =>{
         if(type === "School" && filtingState === "done"){
         setFilterTask(CardData.filter((task) => task.status === "DONE").filter((task) => task.type === "School"))
         } else if(type === "Work" && filtingState === "done"){
@@ -45,7 +73,7 @@ export default function Header({ CardData, setFilterTask, filterTask, numberOfSc
         } else if(type === "Home" && filtingState === "all"){
         setFilterTask(CardData.filter((task) => task.type === "Home"))
         }
-    }
+    } */
 
     return(
         <>

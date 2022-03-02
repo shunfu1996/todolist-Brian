@@ -17,9 +17,8 @@ export default function Body({ isFilter, CardData, filterTask, setData, submitti
     return( 
         <div className="main-body">
             <div className="opening">
-                <p>Good Day</p>
                 {/* <div className="date"> */}
-                    <p className="datee">23 Feb 2022</p>
+                    <p className="datee">Today 23 Feb 2022</p>
                     <button className="more-day" onClick={handleDateList}>
                         <IconContext.Provider value={{ size: "20px", className: "more" }}>
                             <MdExpandMore />
@@ -28,17 +27,17 @@ export default function Body({ isFilter, CardData, filterTask, setData, submitti
                 {/* </div> */}
             </div>
             {dateList && <div className="time-bar">
-                <button className="time-button">All</button>
-                <button className="time-button">Past</button>
+                <button className="time-button" >All Day</button>
+                <button className="time-button">Before Day</button>
                 <button className="time-button">Today</button>
-                <button className="time-button">Future</button>
+                <button className="time-button">After Day</button>
             </div>}
             <div>
                 <div>
                     <p className="list-name" >Todo</p>
                 </div>
             </div>
-            {CardData.map((task) => {
+            {filterTask.map((task) => {
                 
                 const { name, dueDate, type, description, id, status} = task;
                 return(
@@ -61,7 +60,7 @@ export default function Body({ isFilter, CardData, filterTask, setData, submitti
                     <p className="list-name">Done</p>
                 </div>
             </div>
-            {CardData.map((task) => {
+            {filterTask.map((task) => {
                 if(task.status){
                 const { name, dueDate, type, description, id, status} = task;
                 return(

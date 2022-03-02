@@ -17,6 +17,7 @@
 
 .add-task-button{
     border-style: none;
+    background-color: white;
 }
 
 .card-add-icon .card-dash-icon{
@@ -79,6 +80,10 @@
     border-style: none;
 }
 
+.selected{
+    background-color: grey;
+    
+}
 .add-type-icon {
 
 }
@@ -86,3 +91,5 @@
 .add-type-button:hover {
     background-color: grey;
 }
+
+

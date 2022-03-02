@@ -1,18 +1,36 @@
-.task-button {
-    border-style: none;
-    cursor: pointer;
-    transition: 1s;
-}
+
 
 .list-name {
     text-align: center;
     font-size: 30px;
 }
 
-.test{
-    float: left;
+
+.task {
+    border-top: solid 1px gray; 
+    border-bottom: solid 1px gray; 
+    display: flex;
+    line-height: 60px;
+    height: 60px;
+    /* margin-right: 20px; */
+    /* ★ */
 }
 
+.task-button{
+    padding-left: 25px;
+    width: 250px;
+}
+
+.text{
+    width: 80%;
+}
+
+.task p {
+    margin: 0%;
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+}
 
 .task-bg:hover .checkbox {
     background-color: gray ;
@@ -25,11 +43,33 @@
 .checkbox {
     border-style: none;
     background-color: white;
-    justify-content: center;
+}
+
+.star {
 }
 
 .checkbox-icon{
-    padding-top: 12px;
+    margin-top: 15px;
 }
 
+.type {
+    width: 10%;
+    display: inline-block;
+}
 
+.name {
+    width: 10%;
+    display: inline-block;
+}
+
+.detail {
+    width: 70%;
+    display: inline-block;
+}
+
+.date {
+    width: 10%;
+    margin-left: auto!important;
+    display: inline-block;
+}
+  
