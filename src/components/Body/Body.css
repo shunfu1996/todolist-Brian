@@ -1,6 +1,5 @@
 .main-body {
-    margin-top: 122px;
-    margin-left: 68px;
+    margin: 122px 0 0 68px;
 }
 
 .opening p{
@@ -49,7 +48,6 @@
 } */
 
 .task {
-    z-index: -1;
     border-top: solid 1px gray; 
     border-bottom: solid 1px gray; 
     height: 50px;
@@ -64,14 +62,6 @@
     overflow:hidden;
     white-space:nowrap;
 }
-
-.test{
-    float: left;
-}
-
-/* .checkbox {
-
-} */
 
 .star {
     position: absolute;   /* ★ */

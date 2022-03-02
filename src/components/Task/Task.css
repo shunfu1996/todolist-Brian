@@ -1,6 +1,7 @@
 .task-button {
     border-style: none;
     cursor: pointer;
+    transition: 1s;
 }
 
 .list-name {
@@ -8,7 +9,27 @@
     font-size: 30px;
 }
 
+.test{
+    float: left;
+}
 
-/* .task-bg:hover {
+
+.task-bg:hover .checkbox {
     background-color: gray ;
-} */
+}
+.task-bg:hover  {
+    background-color: gray ;
+}
+
+
+.checkbox {
+    border-style: none;
+    background-color: white;
+    justify-content: center;
+}
+
+.checkbox-icon{
+    padding-top: 12px;
+}
+
+

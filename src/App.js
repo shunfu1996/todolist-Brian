@@ -6,15 +6,15 @@ import Body from './components/Body/Body'
 import Card from './components/Card/Card'
 
 function App() {
-  const [data, setData] = /* useLocalStorage */useState(/* "data", */ [{name: 'task name:', description: 'task detail:', type: 'work', dueDate: '2022-02-25', status: 'TODO'}]);
+  const [data, setData] = /* useLocalStorage */useState(/* "data", */ [{id:'test', name: 'task name:', description: 'task detail:', type: 'work', dueDate: '2022-02-25', status:false }]);
   const [filterTask, setFilterTask] = useState(data);
   const [filtingState, setFilingState] = useState("all")   
   const [isFilter, setIsFilter] = useState(false);
-  const [status, setStatus] = useState("TODO");
+  const [status, setStatus] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState(null)
 
 
-/*   const [numberOfSchool, setNumberOfSchool] = useState((data.filter((task) => task.type === "School")).length)
+/*const [numberOfSchool, setNumberOfSchool] = useState((data.filter((task) => task.type === "School")).length)
   const [numberOfWork, setNumberOfWork] = useState((data.filter((task) => task.type === "Work")).length)
   const [numberOfHome, setNumberOfHome] = useState((data.filter((task) => task.type === "Home")).length)
   const [numberOfDone, setNumberOfDone] = useState((data.filter((task) => task.status === "DONE")).length)
@@ -90,7 +90,12 @@ function App() {
   },[filtingState, data]) */
   return (
     <>
-      <Hearder />
+      <Hearder
+      CardData={data} filterTask={filterTask} setFilterTask={setFilterTask} setIsFilter={setIsFilter}
+      /* numberOfSchool={numberOfSchool} numberOfWork={numberOfWork} numberOfHome={numberOfHome} numberOfDone={numberOfDone}
+      numberOfTodo={numberOfTodo} */ setFilingState={setFilingState} filtingState={filtingState} 
+      /* numberOfPast={numberOfPast} numberOfToday={numberOfToday} numberOfFuture={numberOfFuture} */ 
+      />
       <Body isFilter={isFilter} CardData={data} filterTask={filterTask} setData={setData} submittingStatue={submittingStatue} setFilterTask={setFilterTask} setStatus={setStatus} />
       <Card data={data} setData={setData} submittingStatue={submittingStatue} status={status} />
     </>

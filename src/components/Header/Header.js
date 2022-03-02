@@ -7,7 +7,9 @@ import { MdWorkOutline } from 'react-icons/md';//work
 import { AiOutlineHome } from 'react-icons/ai';//home
 
 
-export default function Header() {
+export default function Header({ CardData, setFilterTask, filterTask, numberOfSchool,
+    numberOfHome, numberOfWork, numberOfDone, numberOfTodo, setFilingState,
+    filtingState, numberOfPast, numberOfToday, numberOfFuture }) {
     const [ userName, setUserName ] = useState("GUEST")
     const [ userList, setUserbutton ] = useState(false)
 
@@ -18,6 +20,31 @@ export default function Header() {
 
     const handleTyleTask = () => {
         setUserbutton(!userList)
+    }
+
+
+    ///
+
+    const handleType = (type) =>{
+        if(type === "School" && filtingState === "done"){
+        setFilterTask(CardData.filter((task) => task.status === "DONE").filter((task) => task.type === "School"))
+        } else if(type === "Work" && filtingState === "done"){
+        setFilterTask(CardData.filter((task) => task.status === "DONE").filter((task) => task.type === "Work"))
+        } else if(type === "Home" && filtingState === "done"){
+        setFilterTask(CardData.filter((task) => task.status === "DONE").filter((task) => task.type === "Home"))
+        }else if(type === "School" && filtingState === "todo"){
+        setFilterTask(CardData.filter((task) => task.status === "TODO").filter((task) => task.type === "School"))
+        } else if(type === "Work" && filtingState === "todo"){
+        setFilterTask(CardData.filter((task) => task.status === "TODO").filter((task) => task.type === "Work"))
+        } else if(type === "Home" && filtingState === "todo"){
+        setFilterTask(CardData.filter((task) => task.status === "TODO").filter((task) => task.type === "Home"))
+        }else if(type === "School" && filtingState === "all"){
+        setFilterTask(CardData.filter((task) => task.type === "School"))
+        } else if(type === "Work" && filtingState === "all"){
+        setFilterTask(CardData.filter((task) => task.type === "Work"))
+        } else if(type === "Home" && filtingState === "all"){
+        setFilterTask(CardData.filter((task) => task.type === "Home"))
+        }
     }
 
     return(
@@ -48,19 +75,19 @@ export default function Header() {
                             </IconContext.Provider>
                             <p className='add-task-text'> add task</p>
                         </button>   
-                        <button className='type-task' onClick={handleTyleTask}>
+                        <button className='type-task' onClick={() => handleType("School")}>
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <BsBook />
                             </IconContext.Provider>
                             <p className='type-task-text'>school</p>
                         </button>
-                        <button className='type-task'>
+                        <button className='type-task' onClick={() => handleType("Work")}>
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <MdWorkOutline />
                             </IconContext.Provider>
                             <p className='type-task-text'>work</p>
                         </button>
-                        <button className='type-task'>
+                        <button className='type-task' onClick={() => handleType("Home")}>
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <AiOutlineHome />
                             </IconContext.Provider>

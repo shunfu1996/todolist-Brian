@@ -9,6 +9,7 @@ import { MdWorkOutline } from 'react-icons/md';//work
 import { AiOutlineHome } from 'react-icons/ai';//home
 import { CgMore } from 'react-icons/cg';
 import { MdDateRange } from 'react-icons/md';
+import { v4 } from 'uuid';
 
 import HeadShake from 'react-reveal/HeadShake';
 
@@ -76,7 +77,7 @@ export default function Card({ data, setData, submittingStatue, status}) {
         setData(function(prevData){
             return [
                 {   
-                    /* id: v4(), */
+                    id: v4(),
                     name,
                     description,
                     type,
@@ -126,8 +127,8 @@ function validInput (data) {
                                 <GoDash />
                             </IconContext.Provider>
                         </button>
-                        <button type="submit" className="" onClick={addItem}>Submit</button>
                         <input type="text" className="task-name" placeholder="Your task" aria-label="Username" aria-describedby="basic-addon1"  id="newTaskName" value={name} onChange={nameChange} />
+                        <button type="submit" className="" onClick={addItem}>Submit</button>
                         {/* <p className="task-name">test</p> */}
                         <div className="task-add-button">
                             <button className="task-detail" onClick={() => handleTaskDetailBox("detail")} >

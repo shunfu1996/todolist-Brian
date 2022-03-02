@@ -33,7 +33,52 @@ export default function Body({ isFilter, CardData, filterTask, setData, submitti
                 <button className="time-button">Today</button>
                 <button className="time-button">Future</button>
             </div>}
-            <Task isFilter={isFilter} CardData={CardData} filterTask={filterTask} setData={setData} submittingStatue={submittingStatue} setFilterTask={setFilterTask} setStatus={setStatus}/>
+            <div>
+                <div>
+                    <p className="list-name" >Todo</p>
+                </div>
+            </div>
+            {CardData.map((task) => {
+                
+                const { name, dueDate, type, description, id, status} = task;
+                return(
+                    <Task
+                        key={id}
+                        id={id}
+                        name={name}
+                        description={description}
+                        status={status}
+                        type={type}
+                        dueDate={dueDate}
+                        isFilter={isFilter} CardData={CardData} filterTask={filterTask}
+                        setData={setData} submittingStatue={submittingStatue}
+                        setFilterTask={setFilterTask} setStatus={setStatus}
+                    />
+                );
+            })}
+            <div>
+                <div>
+                    <p className="list-name">Done</p>
+                </div>
+            </div>
+            {CardData.map((task) => {
+                if(task.status){
+                const { name, dueDate, type, description, id, status} = task;
+                return(
+                    <Task
+                        key={id}
+                        id={id}
+                        name={name}
+                        description={description}
+                        status={status}
+                        type={type}
+                        dueDate={dueDate}
+                        isFilter={isFilter} CardData={CardData} filterTask={filterTask}
+                        setData={setData} submittingStatue={submittingStatue}
+                        setFilterTask={setFilterTask} setStatus={setStatus}
+                    />
+                );}
+            })}
             {/* <div>
                 <div>
                     <p>Todo</p>
