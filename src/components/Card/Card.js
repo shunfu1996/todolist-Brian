@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import './Card.css';
 import { IconContext } from "react-icons";
 import { GoPlus, GoDash } from 'react-icons/go';
-import { BsCircle } from 'react-icons/bs';
-import { BsCheckCircle } from 'react-icons/bs';
+/* import { BsCircle } from 'react-icons/bs';
+import { BsCheckCircle } from 'react-icons/bs'; */
 import { BsBook } from 'react-icons/bs'; //school
 import { MdWorkOutline } from 'react-icons/md';//work
 import { AiOutlineHome } from 'react-icons/ai';//home

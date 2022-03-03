@@ -159,4 +159,8 @@
     background-color: #85C1E9 ;
 }
 
+.selected-type {
+    background-color: red !important;
+}
+
 

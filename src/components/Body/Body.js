@@ -1,24 +1,75 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Task from "../Task/Task";
 import './Body.css';
-import Checkbox from 'rc-checkbox';
+/* import Checkbox from 'rc-checkbox'; */
 import { IconContext } from "react-icons";
-import { BsStar } from 'react-icons/bs';
-import { BsStarFill } from 'react-icons/bs';
+/* import { BsStar } from 'react-icons/bs';
+import { BsStarFill } from 'react-icons/bs'; */
 import { MdExpandMore } from 'react-icons/md';
 
 
-export default function Body({ isFilter, CardData, filterTask, setData, submittingStatue, setFilterTask, setStatus }) {
-    const [dateList, setDateList] = useState(false)
+export default function Body({
+    isFilter, CardData, filterTaskByType, setData, submittingStatue, setFilterTask, setStatus, filterTaskByDate, setFilterTaskByDate, setFilterTaskByType,
+    showTypeSchool, showTypeWork, showTypeHome, setShowTypeSchool, setShowTypeWork, setShowTypeHome
+    }) {
+    const [ dateList, setDateList ] = useState(false)
+    const [ showTaskDate, setShowTaskDate ] = useState(`Today ${new Date().toJSON().slice(0,10).replace(/-/g,'-')}`)
 
+    var nowDate = new Date().toJSON().slice(0,10).replace(/-/g,'-')
     const handleDateList = () => {
         setDateList(!dateList)
     }
+
+    useEffect(() => {
+        setFilterTaskByType(filterTaskByDate)
+    },[filterTaskByDate])
+
+    /* useEffect(() => {
+        if(showTypeSchool && showTypeWork && showTypeHome){
+            setFilterTaskByDate(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Work" || task.type === "Home"))
+        }else if(showTypeSchool && showTypeWork && !showTypeHome){
+            setFilterTaskByDate(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Work"))
+        }else if(showTypeSchool && !showTypeWork && showTypeHome){
+            setFilterTaskByDate(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Home"))
+        }else if(!showTypeSchool && showTypeWork && showTypeHome){
+            setFilterTaskByDate(filterTaskByDate.filter((task) => task.type === "Work" || task.type === "Home"))
+        }else if(showTypeSchool && !showTypeWork && !showTypeHome){
+            setFilterTaskByDate(filterTaskByDate.filter((task) => task.type === "School"))
+        }else if(!showTypeSchool && showTypeWork && !showTypeHome){
+            setFilterTaskByDate(filterTaskByDate.filter((task) => task.type === "Work"))
+        }else if(!showTypeSchool && !showTypeWork && showTypeHome){
+            setFilterTaskByDate(filterTaskByDate.filter((task) => task.type === "Home"))
+        }
+
+        setFilterTaskByType(filterTaskByDate)
+    },[filterTaskByDate]) */
+
+    
+    const handleTaskDate = date => {
+        if(date === "all"){
+            setFilterTaskByDate(CardData)
+            setShowTaskDate("All Day")
+        }else if(date === "before"){
+            setFilterTaskByDate(CardData.filter((task) => task.dueDate < nowDate ))
+            setShowTaskDate("Before Day")
+        }else if(date === "today"){
+            setFilterTaskByDate(CardData.filter((task) => task.dueDate === nowDate ))
+            setShowTaskDate(`Today ${new Date().toJSON().slice(0,10).replace(/-/g,'-')}`)
+        }else if(date === "after"){
+            setFilterTaskByDate(CardData.filter((task) => task.dueDate > nowDate ))
+            setShowTaskDate("After Day")
+        }
+        setDateList(!dateList)
+        setShowTypeSchool(false)
+        setShowTypeWork(false)
+        setShowTypeHome(false)
+    } 
+
     return( 
         <div className="main-body">
             <div className="opening">
                 {/* <div className="date"> */}
-                    <p className="datee">Today 23 Feb 2022</p>
+                    <p className="datee">{showTaskDate}</p>
                     <button className="more-day" onClick={handleDateList}>
                         <IconContext.Provider value={{ size: "20px", className: "more" }}>
                             <MdExpandMore />
@@ -27,17 +78,17 @@ export default function Body({ isFilter, CardData, filterTask, setData, submitti
                 {/* </div> */}
             </div>
             {dateList && <div className="time-bar">
-                <button className="time-button" >All Day</button>
-                <button className="time-button">Before Day</button>
-                <button className="time-button">Today</button>
-                <button className="time-button">After Day</button>
+                <button className="time-button" onClick={() => handleTaskDate("all")} >All Day</button>
+                <button className="time-button" onClick={() =>handleTaskDate("before")}>Before Day</button>
+                <button className="time-button" onClick={() =>handleTaskDate("today")}>Today</button>
+                <button className="time-button" onClick={() =>handleTaskDate("after")}>After Day</button>
             </div>}
             <div>
                 <div>
                     <p className="list-name" >Todo</p>
                 </div>
             </div>
-            {filterTask.map((task) => {
+            {filterTaskByType.map((task) => {
                 
                 const { name, dueDate, type, description, id, status} = task;
                 return(
@@ -49,7 +100,7 @@ export default function Body({ isFilter, CardData, filterTask, setData, submitti
                         status={status}
                         type={type}
                         dueDate={dueDate}
-                        isFilter={isFilter} CardData={CardData} filterTask={filterTask}
+                        isFilter={isFilter} CardData={CardData} filterTaskByType={filterTaskByType}
                         setData={setData} submittingStatue={submittingStatue}
                         setFilterTask={setFilterTask} setStatus={setStatus}
                     />
@@ -60,7 +111,7 @@ export default function Body({ isFilter, CardData, filterTask, setData, submitti
                     <p className="list-name">Done</p>
                 </div>
             </div>
-            {filterTask.map((task) => {
+            {filterTaskByType.map((task) => {
                 if(task.status){
                 const { name, dueDate, type, description, id, status} = task;
                 return(
@@ -72,11 +123,12 @@ export default function Body({ isFilter, CardData, filterTask, setData, submitti
                         status={status}
                         type={type}
                         dueDate={dueDate}
-                        isFilter={isFilter} CardData={CardData} filterTask={filterTask}
+                        isFilter={isFilter} CardData={CardData} filterTaskByType={filterTaskByType}
                         setData={setData} submittingStatue={submittingStatue}
                         setFilterTask={setFilterTask} setStatus={setStatus}
                     />
                 );}
+                return console.log('123')
             })}
             {/* <div>
                 <div>

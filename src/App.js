@@ -7,13 +7,19 @@ import Card from './components/Card/Card'
 
 function App() {
   const [data, setData] = useLocalStorage/* useState */("data", [/* {id:'test', name: 'task name:', description: 'task detail:', type: 'work', dueDate: '2022-02-25', status:false } */]);
-  const [filterTask, setFilterTask] = useState(data);
+  const [filterTaskByDate, setFilterTaskByDate] = useState(data);
+  const [filterTaskByType, setFilterTaskByType] = useState(filterTaskByDate);
   const [filtingState, setFilingState] = useState("all")   
-  const [isFilter, setIsFilter] = useState(false);
+  const [isFilter, setIsFilter] = useState(false);// no use
   const [status, setStatus] = useState(false);
-  useEffect(() => {
-    setFilterTask(data)
-  },[data])
+
+  const [ showTypeSchool, setShowTypeSchool ] = useState(false)
+  const [ showTypeWork, setShowTypeWork ] = useState(false)
+  const [ showTypeHome, setShowTypeHome ] = useState(false)
+
+  /* useEffect(() => {
+    setFilterTaskByType(filterTaskByDate)
+  },[filterTaskByDate]) */
 
 /*const [numberOfSchool, setNumberOfSchool] = useState((data.filter((task) => task.type === "School")).length)
   const [numberOfWork, setNumberOfWork] = useState((data.filter((task) => task.type === "Work")).length)
@@ -26,7 +32,7 @@ function App() {
 
   const submittingStatue = useRef(false);
 
-  var nowDate = new Date().toJSON().slice(0,10).replace(/-/g,'-')
+  
  
 
   /* useEffect(() => {
@@ -92,12 +98,16 @@ function App() {
   return (
     <>
       <Hearder
-      CardData={data} filterTask={filterTask} setFilterTask={setFilterTask} setIsFilter={setIsFilter} setData={setData}
+      CardData={data} filterTaskByType={filterTaskByType} setFilterTaskByType={setFilterTaskByType} setIsFilter={setIsFilter} setData={setData} filterTaskByDate={filterTaskByDate}
+      showTypeSchool={showTypeSchool} setShowTypeSchool={setShowTypeSchool} showTypeWork={showTypeWork} setShowTypeWork={setShowTypeWork} showTypeHome={showTypeHome} setShowTypeHome={setShowTypeHome}
       /* numberOfSchool={numberOfSchool} numberOfWork={numberOfWork} numberOfHome={numberOfHome} numberOfDone={numberOfDone}
       numberOfTodo={numberOfTodo} */ setFilingState={setFilingState} filtingState={filtingState} 
       /* numberOfPast={numberOfPast} numberOfToday={numberOfToday} numberOfFuture={numberOfFuture} */ 
       />
-      <Body isFilter={isFilter} CardData={data} filterTask={filterTask} setData={setData} submittingStatue={submittingStatue} setFilterTask={setFilterTask} setStatus={setStatus} />
+      <Body
+      isFilter={isFilter} CardData={data} filterTaskByType={filterTaskByType} setData={setData} submittingStatue={submittingStatue} setFilterTaskByType={setFilterTaskByType} setStatus={setStatus} filterTaskByDate={filterTaskByDate} setFilterTaskByDate={setFilterTaskByDate}
+      showTypeSchool={showTypeSchool} setShowTypeSchool={setShowTypeSchool} showTypeWork={showTypeWork} setShowTypeWork={setShowTypeWork} showTypeHome={showTypeHome} setShowTypeHome={setShowTypeHome}
+      />
       <Card data={data} setData={setData} submittingStatue={submittingStatue} status={status} />
     </>
   );

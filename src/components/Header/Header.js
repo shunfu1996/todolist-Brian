@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Header.css';
 import { IconContext } from "react-icons";
 import { GoPlus } from 'react-icons/go';
@@ -7,50 +7,132 @@ import { MdWorkOutline } from 'react-icons/md';//work
 import { AiOutlineHome } from 'react-icons/ai';//home
 
 
-export default function Header({ CardData, setData, setFilterTask, filterTask, numberOfSchool,
+export default function Header({ CardData, setData, setFilterTaskByType, filterTaskByType, filterTaskByDate,
+    showTypeSchool, setShowTypeSchool, showTypeWork, setShowTypeWork, showTypeHome, setShowTypeHome, 
+    numberOfSchool,
     numberOfHome, numberOfWork, numberOfDone, numberOfTodo, setFilingState,
     filtingState, numberOfPast, numberOfToday, numberOfFuture }) {
     const [ userName, setUserName ] = useState("GUEST")
     const [ userList, setUserbutton ] = useState(false)
-    const [ showTypeSchool, setShowTypeSchool ] = useState(false)
+    /* const [ showTypeSchool, setShowTypeSchool ] = useState(false)
     const [ showTypeWork, setShowTypeWork ] = useState(false)
-    const [ showTypeHome, setShowTypeHome ] = useState(false)
-
+    const [ showTypeHome, setShowTypeHome ] = useState(false) */
 
     const handleChooseUserList = () => {
         setUserbutton(!userList)
+        setUserName()//can del  
     }
 
-    const handleTyleTask = () => {
+    /* useEffect(()=>{
+    
+    }) */
+        
+    useEffect (()=>{
+        console.log(`school:${showTypeSchool}`)
+        if(showTypeWork && showTypeSchool && showTypeHome){
+            setFilterTaskByType(filterTaskByDate)
+        }else if(showTypeWork && showTypeSchool){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Work"))
+        }else if(showTypeWork && showTypeHome){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "Home" || task.type === "Work"))
+        }else if(showTypeSchool && showTypeHome){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Home"))
+        }else if(showTypeSchool){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School"))
+        }else if(showTypeWork){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "Work"))
+        }else if(showTypeHome){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "Home"))
+        }else{
+            setFilterTaskByType(CardData)
+        }
+    },[showTypeSchool])
+
+    useEffect (()=>{
+        console.log(`work:${showTypeWork}`)
+        if(showTypeWork && showTypeSchool && showTypeHome){
+            setFilterTaskByType(filterTaskByDate)
+        }else if(showTypeWork && showTypeSchool){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Work"))
+        }else if(showTypeWork && showTypeHome){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "Home" || task.type === "Work"))
+        }else if(showTypeSchool && showTypeHome){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Home"))
+        }else if(showTypeSchool){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School"))
+        }else if(showTypeWork){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "Work"))
+        }else if(showTypeHome){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "Home"))
+        }else{
+            setFilterTaskByType(filterTaskByDate)
+        }
+    },[showTypeWork])
+
+    useEffect (()=>{
+        console.log(`home:${showTypeHome}`)
+        if(showTypeWork && showTypeSchool && showTypeHome){
+            setFilterTaskByType(filterTaskByDate)
+        }else if(showTypeWork && showTypeSchool){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Work"))
+        }else if(showTypeWork && showTypeHome){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "Home" || task.type === "Work"))
+        }else if(showTypeSchool && showTypeHome){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Home"))
+        }else if(showTypeSchool){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School"))
+        }else if(showTypeWork){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "Work"))
+        }else if(showTypeHome){
+            setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "Home"))
+        }else{
+            setFilterTaskByType(filterTaskByDate)
+        }
+    },[showTypeHome])
+
+  /*   const handleTyleTask = () => {
         setUserbutton(!userList)
-    }
-
+    } */
 
     const handleType = type => {
         if(type === "School"){
-            // setFilterTask(CardData.filter((task) => task.type === "school"))
-            setShowTypeSchool(true)
-            handleShowTaskList("School")
+            // setFilterTaskByType(CardData.filter((task) => task.type === "school"))
+            setShowTypeSchool(!showTypeSchool)
+            /* handleShowTaskList("School") */
         }else if(type === "Work"){
-            // setFilterTask(CardData.filter((task) => task.type === "work"))
-            setShowTypeWork(true)
-            handleShowTaskList("Work")
+            // setFilterTaskByType(CardData.filter((task) => task.type === "work"))
+            setShowTypeWork(!showTypeWork)
+            /* handleShowTaskList("Work") */
         }else if(type === "Home"){
-            setShowTypeHome(true)
-            handleShowTaskList("Home")
-        }
-        return 
+            setShowTypeHome(!showTypeHome)
+            /* handleShowTaskList("Home") */
+        } 
     }
 
-    const handleShowTaskList = ele => {
-        if(ele === "School"){
-            setFilterTask(CardData.filter((task) => task.type === "School"))
-        }else if(ele === "Work"){
-            setFilterTask(CardData.filter((task) => task.type === "Work"))
-        }else if(ele === "Home"){
-            setFilterTask(CardData.filter((task) => task.type === "Home"))
+    /* const handleShowTaskList = ele => {
+        if(ele === "School" && showTypeWork && showTypeSchool && showTypeHome){
+            setFilterTaskByType(CardData)
+        }else if(ele === "School" && showTypeWork && showTypeSchool){
+            setFilterTaskByType(CardData.filter((task) => task.type === "School" || task.type === "Work"))
+        }else if(ele === "School" && showTypeWork && showTypeHome){
+            setFilterTaskByType(CardData.filter((task) => task.type === "Home" || task.type === "Work"))
+        }else if(ele === "School" && showTypeSchool && showTypeHome){
+            setFilterTaskByType(CardData.filter((task) => task.type === "School" || task.type === "Home"))
+        }else if(ele === "School" && showTypeSchool){
+            setFilterTaskByType(CardData.filter((task) => task.type === "School"))
+        }else{
+            setFilterTaskByType(CardData)
         }
-    }
+
+        if(ele === "Work"){
+            setFilterTaskByType(CardData.filter((task) => task.type === "Work"))
+        }
+
+        if(ele === "Home"){
+            setFilterTaskByType(CardData.filter((task) => task.type === "Home"))
+        }
+
+    } */
     ///
 
     /* const handleType = (type) =>{
@@ -80,7 +162,7 @@ export default function Header({ CardData, setData, setFilterTask, filterTask, n
             <nav className='nav'>
                 <div className='topnav'>
                     <img src="https://img.icons8.com/clouds/100/000000/todo-list.png" id="Check" alt="Check" height={"100px"}/>
-                    <a>To Do list</a>
+                    <p>To Do list</p>
                     <div className='button-right'>
                         <button className='user-button' onClick={handleChooseUserList} >{userName[0]}</button>
                     </div>
@@ -103,19 +185,19 @@ export default function Header({ CardData, setData, setFilterTask, filterTask, n
                             </IconContext.Provider>
                             <p className='add-task-text'> add task</p>
                         </button>   
-                        <button className='type-task' onClick={() => handleType("School")}>
+                        <button className={showTypeSchool ?'type-task selected-type':'type-task'} onClick={() => handleType("School")}>
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <BsBook />
                             </IconContext.Provider>
                             <p className='type-task-text'>school</p>
                         </button>
-                        <button className='type-task' onClick={() => handleType("Work")}>
+                        <button className={showTypeWork ?'type-task selected-type':'type-task'} onClick={() => handleType("Work")}>
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <MdWorkOutline />
                             </IconContext.Provider>
                             <p className='type-task-text'>work</p>
                         </button>
-                        <button className='type-task' onClick={() => handleType("Home")}>
+                        <button className={showTypeHome ?'type-task selected-type':'type-task'} onClick={() => handleType("Home")}>
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <AiOutlineHome />
                             </IconContext.Provider>

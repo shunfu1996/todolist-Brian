@@ -9,7 +9,7 @@ import { CgMore } from 'react-icons/cg';
 
 
 
-export default function Task({status, id, name, description, type, dueDate, isFilter, CardData, filterTask, setData, submittingStatue, setFilterTask, setStatus }) {
+export default function Task({status, id, name, description, type, dueDate, isFilter, CardData, setData, submittingStatue, setFilterTask, setStatus }) {
     const [showDetail, setshowDetail] = useState(false) 
 
     const handleShowDetail = () => {
