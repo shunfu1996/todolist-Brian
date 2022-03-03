@@ -205,7 +205,7 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
                             </IconContext.Provider>
                             <p className='add-task-text'> add task</p>
                         </button>  */}  
-                        <button className={showTypeStar ?'type-task selected-type':'type-task'} onClick={() => handleType("Star")}>
+                        <button className={showTypeStar ?'type-task selected-type':'type-task star-task-button'} onClick={() => handleType("Star")}>
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <BsStarFill />
                             </IconContext.Provider>

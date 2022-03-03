@@ -99,15 +99,19 @@ export default function Body({
         <div className="main-body">
             <div className="opening">
                 {/* <div className="date"> */}
-                    <p className="datee">{showTaskDate}</p>
+                    {/* <p className="datee">{showTaskDate}</p> */}
                     {showTypeStar ?
-                    <button className="more-day disabled" onClick={handleDateList} disabled>
-                        <IconContext.Provider value={{ size: "20px", className: "more" }}>
-                            <MdExpandMore />
-                        </IconContext.Provider>
-                    </button>:
+                    <>
+                        <p className="datee">{showTaskDate}</p>
+                        <button className="more-day disabled" onClick={handleDateList} disabled>
+                            <IconContext.Provider value={{ size: "30px", className: "more" }}>
+                                <MdExpandMore />
+                            </IconContext.Provider>
+                        </button>
+                    </>:
                     <button className="more-day" onClick={handleDateList} >
-                        <IconContext.Provider value={{ size: "20px", className: "more" }}>
+                        <p className="datee">{showTaskDate}</p>
+                        <IconContext.Provider value={{ size: "30px", className: "more" }}>
                             <MdExpandMore />
                         </IconContext.Provider>
                     </button>}

@@ -23,9 +23,9 @@
 }
 
 
-.datee {
+/* .datee {
     display: inline;
-}
+} */
 
 /* .more {
     border-style: none;
@@ -37,9 +37,11 @@
 }
 
 .time-bar {
+    position: fixed;
+    left: 525px;
     z-index: 999;
     border-style: groove;   
-    top: 100px;
+    top: 140px;
     width: 200px;
     justify-content: center;
     background-color: #85C1E9;  
