@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import './Task.css';
+import { confirm } from "react-confirm-box";
 import { IconContext } from "react-icons";
 import Checkbox from 'rc-checkbox';
 import { BsStar } from 'react-icons/bs';
 import { BsStarFill } from 'react-icons/bs';
-import { MdExpandMore, MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md';
+import { MdExpandMore, MdCheckBoxOutlineBlank, MdCheckBox, MdOutlineCancel, MdCancel } from 'react-icons/md';
 import { CgMore } from 'react-icons/cg';
 
 
 
-export default function Task({status, id, name, description, type, dueDate, isFilter, CardData, setData, submittingStatue, setFilterTask, setStatus }) {
+export default function Task({status, id, name, description, type, dueDate, isFilter, CardData, setData, submittingStatue, setStatus, setFilterTaskByType }) {
     const [showDetail, setshowDetail] = useState(false) 
 
     const handleShowDetail = () => {
@@ -33,6 +34,31 @@ export default function Task({status, id, name, description, type, dueDate, isFi
 
     function test(){
         console.log(status)
+    }
+
+
+    //
+
+    async function deleteItem() {  //the button of delete task  function 
+        submittingStatue.current = true;
+        if(status){
+            setData(function(prev) {
+                return prev.filter(item => item.id !== id)
+            })
+            setFilterTaskByType(function(prev) {   // keep the screen is show correct data
+                return prev.filter(item => item.id !== id) 
+            });
+        } else {
+            const result = await confirm("Are you sure to delete?");
+            if (result) {
+                setData(function(prev) {
+                return prev.filter(item => item.id !== id)      
+            })
+            setFilterTaskByType(function(prev) {
+                return prev.filter(item => item.id !== id)
+            });
+            }
+        }
     }
 
     return(
@@ -62,6 +88,14 @@ export default function Task({status, id, name, description, type, dueDate, isFi
                         </IconContext.Provider>}
                         <p className="date">{dueDate}</p>
                     </div>
+                    <button className="delete-button" onClick={deleteItem}>
+                        <IconContext.Provider value={{ size: "35px", className: "cancel-icon" }}>
+                            <MdOutlineCancel />
+                        </IconContext.Provider>
+                        <IconContext.Provider value={{ size: "35px", className: "hover-cancel-icon" }}>
+                            <MdCancel />
+                        </IconContext.Provider>
+                    </button>
             </div>
             {/* <div className="task">
                 <div className="test">

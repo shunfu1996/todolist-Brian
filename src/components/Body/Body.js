@@ -9,7 +9,7 @@ import { MdExpandMore } from 'react-icons/md';
 
 
 export default function Body({
-    isFilter, CardData, filterTaskByType, setData, submittingStatue, setFilterTask, setStatus, filterTaskByDate, setFilterTaskByDate, setFilterTaskByType,
+    isFilter, CardData, filterTaskByType, setData, submittingStatue, setStatus, filterTaskByDate, setFilterTaskByDate, setFilterTaskByType,
     showTypeSchool, showTypeWork, showTypeHome, setShowTypeSchool, setShowTypeWork, setShowTypeHome
     }) {
     const [ dateList, setDateList ] = useState(false)
@@ -65,6 +65,10 @@ export default function Body({
         setShowTypeHome(false)
     } 
 
+    //
+
+    
+
     return( 
         <div className="main-body">
             <div className="opening">
@@ -89,7 +93,7 @@ export default function Body({
                 </div>
             </div>
             {filterTaskByType.map((task) => {
-                
+                if(!task.status){
                 const { name, dueDate, type, description, id, status} = task;
                 return(
                     <Task
@@ -102,9 +106,10 @@ export default function Body({
                         dueDate={dueDate}
                         isFilter={isFilter} CardData={CardData} filterTaskByType={filterTaskByType}
                         setData={setData} submittingStatue={submittingStatue}
-                        setFilterTask={setFilterTask} setStatus={setStatus}
+                        setFilterTaskByType={setFilterTaskByType} setStatus={setStatus}
                     />
-                );
+                );}
+                return console.log("todo")
             })}
             <div>
                 <div>
@@ -125,10 +130,10 @@ export default function Body({
                         dueDate={dueDate}
                         isFilter={isFilter} CardData={CardData} filterTaskByType={filterTaskByType}
                         setData={setData} submittingStatue={submittingStatue}
-                        setFilterTask={setFilterTask} setStatus={setStatus}
+                        setFilterTaskByType={setFilterTaskByType} setStatus={setStatus}
                     />
                 );}
-                return console.log('123')
+                return console.log("done")
             })}
             {/* <div>
                 <div>

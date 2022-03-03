@@ -35,10 +35,16 @@
 .task-bg:hover .checkbox {
     background-color: gray ;
 }
+.task-bg:hover .delete-button {
+    background-color: gray ;
+}
 .task-bg:hover  {
     background-color: gray ;
 }
 
+.task:hover .delete-button {
+    display: block;
+}
 
 .checkbox {
     border-style: none;
@@ -63,13 +69,28 @@
 }
 
 .detail {
-    width: 70%;
+    width: 65%;
     display: inline-block;
 }
 
 .date {
-    width: 10%;
+    width: 8%;
     margin-left: auto!important;
     display: inline-block;
 }
   
+.delete-button {
+    display: none;
+    border-style: none;
+    background-color: white;
+}
+
+.cancel-icon:hover {
+    display: none;
+}
+.cancel-icon:hover ~ .hover-cancel-icon {
+    display: block;
+}
+.hover-cancel-icon {
+    display: none;
+}
