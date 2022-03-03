@@ -6,7 +6,7 @@ import Checkbox from 'rc-checkbox';
 import { BsStar } from 'react-icons/bs';
 import { BsStarFill } from 'react-icons/bs';
 import { MdExpandMore, MdCheckBoxOutlineBlank, MdCheckBox, MdOutlineCancel, MdCancel } from 'react-icons/md';
-import { CgMore } from 'react-icons/cg';
+import { CgMore, CgMoreO } from 'react-icons/cg';
 
 
 
@@ -82,12 +82,17 @@ export default function Task({status, id, name, description, type, dueDate, isFi
                     <div className="text">
                         <p className="type">{type}</p>
                         <p className="name">{name}</p>
-                        {!showDetail ?<p className="detail">{description}</p>:
-                        <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
-                            <CgMore />
-                        </IconContext.Provider>}
                         <p className="date">{dueDate}</p>
+                        {showDetail &&<div className="show-task-detail-box">{description}</div>}
                     </div>
+                    <button className="detail-button" onClick={handleShowDetail} >
+                        <IconContext.Provider value={{ size: "35px", className: "type-icon" }}>
+                            <CgMore />
+                        </IconContext.Provider>
+                        <IconContext.Provider value={{ size: "35px", className: "hover-type-icon" }}>
+                            <CgMoreO />
+                        </IconContext.Provider>
+                    </button>
                     <button className="delete-button" onClick={deleteItem}>
                         <IconContext.Provider value={{ size: "35px", className: "cancel-icon" }}>
                             <MdOutlineCancel />

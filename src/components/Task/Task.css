@@ -27,6 +27,7 @@
 
 .task p {
     margin: 0%;
+    text-align: center;
     text-overflow:ellipsis;
     overflow:hidden;
     white-space:nowrap;
@@ -38,11 +39,17 @@
 .task-bg:hover .delete-button {
     background-color: gray ;
 }
+.task-bg:hover .detail-button {
+    background-color: gray ;
+}
 .task-bg:hover  {
     background-color: gray ;
 }
 
 .task:hover .delete-button {
+    display: block;
+}
+.task:hover .detail-button {
     display: block;
 }
 
@@ -59,26 +66,45 @@
 }
 
 .type {
-    width: 10%;
+    width: 5%;
     display: inline-block;
 }
 
 .name {
-    width: 10%;
+    width: 82%;
     display: inline-block;
 }
 
 .detail {
-    width: 65%;
+    width: 5%;
     display: inline-block;
 }
+
 
 .date {
     width: 8%;
     margin-left: auto!important;
     display: inline-block;
 }
-  
+
+.show-task-detail-box{
+    position: fixed;
+    border-style: groove;
+    margin-top: -111px;
+    height: 137px;
+    width: 315px;
+    right: 26%;
+    display: inline-block;
+    background-color: white;
+}
+
+
+.detail-button{
+    display: none;
+    border-style: none;
+    background-color: white;
+}
+
 .delete-button {
     display: none;
     border-style: none;
@@ -92,5 +118,17 @@
     display: block;
 }
 .hover-cancel-icon {
+    display: none;
+}
+.type-icon:hover {
+    display: none;
+}
+.type-icon:hover ~ .hover-type-icon {
+    display: block;
+    border-radius: 50%;
+    background-color: black;
+    color: gray;
+}
+.hover-type-icon {
     display: none;
 }

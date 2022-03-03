@@ -7,7 +7,8 @@ import Card from './components/Card/Card'
 
 function App() {
   const [data, setData] = useLocalStorage/* useState */("data", [/* {id:'test', name: 'task name:', description: 'task detail:', type: 'work', dueDate: '2022-02-25', status:false } */]);
-  const [filterTaskByDate, setFilterTaskByDate] = useState(data);
+  var nowDate = new Date().toJSON().slice(0,10).replace(/-/g,'-')
+  const [filterTaskByDate, setFilterTaskByDate] = useState(data.filter((task) => task.dueDate === nowDate ));
   const [filterTaskByType, setFilterTaskByType] = useState(filterTaskByDate);
   const [filtingState, setFilingState] = useState("all")   
   const [isFilter, setIsFilter] = useState(false);// no use
@@ -16,6 +17,7 @@ function App() {
   const [ showTypeSchool, setShowTypeSchool ] = useState(false)
   const [ showTypeWork, setShowTypeWork ] = useState(false)
   const [ showTypeHome, setShowTypeHome ] = useState(false)
+
 
   /* useEffect(() => {
     setFilterTaskByType(filterTaskByDate)
