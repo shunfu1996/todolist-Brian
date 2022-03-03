@@ -42,3 +42,6 @@
     background-color: grey;
 }
 
+.disabled{
+    cursor: no-drop;
+}

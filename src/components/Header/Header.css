@@ -111,6 +111,14 @@
     width: 180px;
     margin-right: 100px;
 }
+.leftnav:hover .disabled-type-task {
+    position: relative;
+    cursor: no-drop;
+    background-color: white;
+    border-radius: 25px;
+    width: 180px;
+    margin-right: 100px;
+}
 
 .leftnav:hover .add-icon {
     float: left;
@@ -155,12 +163,22 @@
 .type-task {
     height: 50px;
     margin: 10px;
+    padding: 10px;
+    border-style: none;
+    background-color: #85C1E9 ;
+}
+.disabled-type-task {
+    height: 50px;
+    margin: 10px;
+    padding: 10px;
     border-style: none;
     background-color: #85C1E9 ;
 }
 
 .selected-type {
-    background-color: red !important;
+    background-color: grey !important;
+    width: 50px;
+    border-radius: 50%;
 }
 
 

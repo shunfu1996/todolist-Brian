@@ -10,20 +10,34 @@ import { CgMore, CgMoreO } from 'react-icons/cg';
 
 
 
-export default function Task({status, id, name, description, type, dueDate, isFilter, CardData, setData, submittingStatue, setStatus, setFilterTaskByType }) {
+export default function Task({star, status, id, name, description, type, dueDate, isFilter, CardData, setData, submittingStatue, setFilterTaskByType }) {
     const [showDetail, setshowDetail] = useState(false) 
 
     const handleShowDetail = () => {
         setshowDetail(!showDetail)
     }
 
-    function handleStatus(id){
+    function handleStatusFinish(id){
         const updatedStatus = [...CardData].map((todo) =>{
             if (todo.id === id && todo.status) {
                 todo.status = false
                 /* todo.status = "TODO"; */
             } else if (todo.id === id && !todo.status) {
                 todo.status = true
+                /* todo.status = "DONE"; */
+            }
+            return todo;
+        })
+        console.log(CardData)
+        setData(updatedStatus); 
+    }
+    function handleStatusStar(id){
+        const updatedStatus = [...CardData].map((todo) =>{
+            if (todo.id === id && todo.star) {
+                todo.star = false
+                /* todo.status = "TODO"; */
+            } else if (todo.id === id && !todo.star) {
+                todo.star = true
                 /* todo.status = "DONE"; */
             }
             return todo;
@@ -66,16 +80,22 @@ export default function Task({status, id, name, description, type, dueDate, isFi
             <div className="task task-bg test">
                     <div className="task-button">
                         <button onClick={test}>
-                            check task
+                            Edit task
                         </button>
-                        <button className="checkbox" onClick={() => handleStatus(id)}>
-                            <IconContext.Provider value={{ size: "25px", className: "checkbox-icon" }}>
+                        <button className="checkbox" onClick={() => handleStatusFinish(id)}>
+                            <IconContext.Provider value={{ size: "25px", className: "task-checkbox-icon" }}>
                                 {status?<MdCheckBox />:<MdCheckBoxOutlineBlank />}
                             </IconContext.Provider>
+                            <IconContext.Provider value={{ size: "25px", className: "hover-task-checkbox-icon" }}>
+                                <MdCheckBox />
+                            </IconContext.Provider>
                         </button>    
-                        <button className="checkbox" onClick={() => handleStatus(id)}>
-                            <IconContext.Provider value={{ size: "25px", className: "star" }}>
-                                <BsStar />
+                        <button className="checkbox" onClick={() => handleStatusStar(id)}>
+                            <IconContext.Provider value={{ size: "25px", className: "star-icon" }}>
+                                {star?<BsStarFill />:<BsStar />}
+                            </IconContext.Provider>
+                            <IconContext.Provider value={{ size: "25px", className: "hover-star-icon" }}>
+                                <BsStarFill />
                             </IconContext.Provider>
                         </button>                    
                     </div>
@@ -86,10 +106,10 @@ export default function Task({status, id, name, description, type, dueDate, isFi
                         {showDetail &&<div className="show-task-detail-box">{description}</div>}
                     </div>
                     <button className="detail-button" onClick={handleShowDetail} >
-                        <IconContext.Provider value={{ size: "35px", className: "type-icon" }}>
+                        <IconContext.Provider value={{ size: "35px", className: "task-type-icon" }}>
                             <CgMore />
                         </IconContext.Provider>
-                        <IconContext.Provider value={{ size: "35px", className: "hover-type-icon" }}>
+                        <IconContext.Provider value={{ size: "35px", className: "hover-task-type-icon" }}>
                             <CgMoreO />
                         </IconContext.Provider>
                     </button>

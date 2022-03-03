@@ -9,11 +9,13 @@ import { MdExpandMore } from 'react-icons/md';
 
 
 export default function Body({
-    isFilter, CardData, filterTaskByType, setData, submittingStatue, setStatus, filterTaskByDate, setFilterTaskByDate, setFilterTaskByType,
-    showTypeSchool, showTypeWork, showTypeHome, setShowTypeSchool, setShowTypeWork, setShowTypeHome
+    isFilter, CardData, filterTaskByType, setData, submittingStatue, setStatus, setStar, filterTaskByDate, setFilterTaskByDate, setFilterTaskByType,
+    showTypeSchool, showTypeWork, showTypeHome, setShowTypeSchool, setShowTypeWork, setShowTypeHome,
+    showTaskDate, setShowTaskDate,
+    showTypeStar
     }) {
     const [ dateList, setDateList ] = useState(false)
-    const [ showTaskDate, setShowTaskDate ] = useState(`Today ${new Date().toJSON().slice(0,10).replace(/-/g,'-')}`)
+    /* const [ showTaskDate, setShowTaskDate ] = useState(`Today ${new Date().toJSON().slice(0,10).replace(/-/g,'-')}`) */
 
     var nowDate = new Date().toJSON().slice(0,10).replace(/-/g,'-')
     const handleDateList = () => {
@@ -23,6 +25,10 @@ export default function Body({
     useEffect(() => {
         setFilterTaskByType(filterTaskByDate)
     },[filterTaskByDate])
+
+    useEffect(() => {
+        setDateList(false)
+    },[showTypeStar])
 
     /* useEffect(() => {
         if(showTypeSchool && showTypeWork && showTypeHome){
@@ -74,11 +80,17 @@ export default function Body({
             <div className="opening">
                 {/* <div className="date"> */}
                     <p className="datee">{showTaskDate}</p>
-                    <button className="more-day" onClick={handleDateList}>
+                    {showTypeStar ?
+                    <button className="more-day disabled" onClick={handleDateList} disabled>
                         <IconContext.Provider value={{ size: "20px", className: "more" }}>
                             <MdExpandMore />
                         </IconContext.Provider>
-                    </button>
+                    </button>:
+                    <button className="more-day" onClick={handleDateList} >
+                        <IconContext.Provider value={{ size: "20px", className: "more" }}>
+                            <MdExpandMore />
+                        </IconContext.Provider>
+                    </button>}
                 {/* </div> */}
             </div>
             {dateList && <div className="time-bar">
@@ -94,7 +106,7 @@ export default function Body({
             </div>
             {filterTaskByType.map((task) => {
                 if(!task.status){
-                const { name, dueDate, type, description, id, status} = task;
+                const { name, dueDate, type, description, id, status, star} = task;
                 return(
                     <Task
                         key={id}
@@ -102,11 +114,12 @@ export default function Body({
                         name={name}
                         description={description}
                         status={status}
+                        star={star}
                         type={type}
                         dueDate={dueDate}
                         isFilter={isFilter} CardData={CardData} filterTaskByType={filterTaskByType}
                         setData={setData} submittingStatue={submittingStatue}
-                        setFilterTaskByType={setFilterTaskByType} setStatus={setStatus}
+                        setFilterTaskByType={setFilterTaskByType} setStatus={setStatus} setStar={setStar}
                     />
                 );}
                 return console.log("todo")
@@ -118,7 +131,7 @@ export default function Body({
             </div>
             {filterTaskByType.map((task) => {
                 if(task.status){
-                const { name, dueDate, type, description, id, status} = task;
+                const { name, dueDate, type, description, id, status, star} = task;
                 return(
                     <Task
                         key={id}
@@ -126,11 +139,12 @@ export default function Body({
                         name={name}
                         description={description}
                         status={status}
+                        star={star}
                         type={type}
                         dueDate={dueDate}
                         isFilter={isFilter} CardData={CardData} filterTaskByType={filterTaskByType}
                         setData={setData} submittingStatue={submittingStatue}
-                        setFilterTaskByType={setFilterTaskByType} setStatus={setStatus}
+                        setFilterTaskByType={setFilterTaskByType} setStatus={setStatus} setStar={setStar}
                     />
                 );}
                 return console.log("done")

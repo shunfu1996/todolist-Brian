@@ -5,19 +5,22 @@ import { GoPlus } from 'react-icons/go';
 import { BsBook } from 'react-icons/bs'; //school
 import { MdWorkOutline } from 'react-icons/md';//work
 import { AiOutlineHome } from 'react-icons/ai';//home
+import { BsStarFill } from 'react-icons/bs';//star
 
 
 export default function Header({ CardData, setData, setFilterTaskByType, filterTaskByType, filterTaskByDate,
-    showTypeSchool, setShowTypeSchool, showTypeWork, setShowTypeWork, showTypeHome, setShowTypeHome, 
+    showTypeSchool, setShowTypeSchool, showTypeWork, setShowTypeWork, showTypeHome, setShowTypeHome, showTypeStar, setShowTypeStar,
     numberOfSchool,
     numberOfHome, numberOfWork, numberOfDone, numberOfTodo, setFilingState,
-    filtingState, numberOfPast, numberOfToday, numberOfFuture }) {
+    filtingState, numberOfPast, numberOfToday, numberOfFuture,
+    showTaskDate, setShowTaskDate
+     }) {
     const [ userName, setUserName ] = useState("GUEST")
     const [ userList, setUserbutton ] = useState(false)
     /* const [ showTypeSchool, setShowTypeSchool ] = useState(false)
     const [ showTypeWork, setShowTypeWork ] = useState(false)
     const [ showTypeHome, setShowTypeHome ] = useState(false) */
-
+    var nowDate = new Date().toJSON().slice(0,10).replace(/-/g,'-')
     const handleChooseUserList = () => {
         setUserbutton(!userList)
         setUserName()//can del  
@@ -71,7 +74,7 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
 
     useEffect (()=>{
         console.log(`home:${showTypeHome}`)
-        if(showTypeWork && showTypeSchool && showTypeHome){
+        if(showTypeWork && showTypeSchool && showTypeHome ){
             setFilterTaskByType(filterTaskByDate)
         }else if(showTypeWork && showTypeSchool){
             setFilterTaskByType(filterTaskByDate.filter((task) => task.type === "School" || task.type === "Work"))
@@ -90,6 +93,22 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
         }
     },[showTypeHome])
 
+    useEffect (()=>{
+        if(showTypeStar){
+            setFilterTaskByType(CardData.filter((task) => task.star === true ))
+            setShowTaskDate("Important Task")
+            /* setShowTypeSchool(true)
+            setShowTypeWork(true)
+            setShowTypeHome(true) */
+        }else if(!showTypeStar){
+            setFilterTaskByType(CardData.filter((task) => task.dueDate === nowDate ))
+            setShowTaskDate(`Today ${new Date().toJSON().slice(0,10).replace(/-/g,'-')}`)
+            /* setShowTypeSchool(false)
+            setShowTypeWork(false)
+            setShowTypeHome(false) */
+        }
+    },[showTypeStar])
+
   /*   const handleTyleTask = () => {
         setUserbutton(!userList)
     } */
@@ -106,6 +125,8 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
         }else if(type === "Home"){
             setShowTypeHome(!showTypeHome)
             /* handleShowTaskList("Home") */
+        }else if(type === "Star"){
+            setShowTypeStar(!showTypeStar)
         } 
     }
 
@@ -179,30 +200,61 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
             <nav className='bg'>
                <div className='leftnav'>
                    <div className='test'>
-                        <button className='add-task'>
+                        {/* <button className='add-task'>
                             <IconContext.Provider value={{ size: "40px", className: "add-icon" }}>
                                 <GoPlus />
                             </IconContext.Provider>
                             <p className='add-task-text'> add task</p>
-                        </button>   
-                        <button className={showTypeSchool ?'type-task selected-type':'type-task'} onClick={() => handleType("School")}>
+                        </button>  */}  
+                        <button className={showTypeStar ?'type-task selected-type':'type-task'} onClick={() => handleType("Star")}>
+                            <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
+                                <BsStarFill />
+                            </IconContext.Provider>
+                            <p className='type-task-text'>Important</p>
+                        </button> 
+                        {showTypeStar ?
+                        <>
+                        <button className='disabled-type-task' disabled >
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <BsBook />
                             </IconContext.Provider>
-                            <p className='type-task-text'>school</p>
+                            <p className='type-task-text'>School</p>
                         </button>
-                        <button className={showTypeWork ?'type-task selected-type':'type-task'} onClick={() => handleType("Work")}>
+                        <button className='disabled-type-task' disabled >
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <MdWorkOutline />
                             </IconContext.Provider>
-                            <p className='type-task-text'>work</p>
+                            <p className='type-task-text'>Work</p>
                         </button>
-                        <button className={showTypeHome ?'type-task selected-type':'type-task'} onClick={() => handleType("Home")}>
+                        <button className='disabled-type-task' disabled >
                             <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
                                 <AiOutlineHome />
                             </IconContext.Provider>
-                            <p className='type-task-text'>home</p>
+                            <p className='type-task-text'>Home</p>
                         </button>
+                        </>:
+                        <>
+                        <button className={showTypeSchool ?'type-task selected-type':'type-task'} onClick={() => handleType("School")} >
+                        <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
+                            <BsBook />
+                        </IconContext.Provider>
+                        <p className='type-task-text'>School</p>
+                        </button>
+                        <button className={showTypeWork ?'type-task selected-type':'type-task'} onClick={() => handleType("Work")} >
+                            <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
+                                <MdWorkOutline />
+                            </IconContext.Provider>
+                            <p className='type-task-text'>Work</p>
+                        </button>
+                        <button className={showTypeHome ?'type-task selected-type':'type-task'} onClick={() => handleType("Home")} >
+                            <IconContext.Provider value={{ size: "25px", className: "type-icon" }}>
+                                <AiOutlineHome />
+                            </IconContext.Provider>
+                            <p className='type-task-text'>Home</p>
+                        </button>
+                        </>}
+
+                        
                     </div>
                </div>
             </nav>

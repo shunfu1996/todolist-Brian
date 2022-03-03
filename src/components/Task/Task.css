@@ -111,6 +111,24 @@
     background-color: white;
 }
 
+.task-checkbox-icon:hover {
+    display: none;
+}
+.task-checkbox-icon:hover ~ .hover-task-checkbox-icon {
+    display: block;
+}
+.hover-task-checkbox-icon {
+    display: none;
+}
+.star-icon:hover {
+    display: none;
+}
+.star-icon:hover ~ .hover-star-icon {
+    display: block;
+}
+.hover-star-icon {
+    display: none;
+}
 .cancel-icon:hover {
     display: none;
 }
@@ -120,15 +138,15 @@
 .hover-cancel-icon {
     display: none;
 }
-.type-icon:hover {
+.task-type-icon:hover {
     display: none;
 }
-.type-icon:hover ~ .hover-type-icon {
+.task-type-icon:hover ~ .hover-task-type-icon {
     display: block;
     border-radius: 50%;
     background-color: black;
     color: gray;
 }
-.hover-type-icon {
+.hover-task-type-icon {
     display: none;
 }

@@ -14,7 +14,7 @@ import { v4 } from 'uuid';
 import HeadShake from 'react-reveal/HeadShake';
 
 
-export default function Card({ data, setData, submittingStatue, status}) {
+export default function Card({ data, setData, submittingStatue, status, star}) {
     const [add, setAdd] = useState(true)
     const [typeButtonDetail, setTypeButtonDetail] = useState(false)
     const [dateButtonDetail, setDateButtonDetail] = useState(false)
@@ -99,6 +99,7 @@ export default function Card({ data, setData, submittingStatue, status}) {
                     type,
                     dueDate,
                     status,
+                    star,
                 },
                 ...prevData,
             ];

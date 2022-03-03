@@ -13,10 +13,15 @@ function App() {
   const [filtingState, setFilingState] = useState("all")   
   const [isFilter, setIsFilter] = useState(false);// no use
   const [status, setStatus] = useState(false);
+  const [star, setStar] = useState(false);
 
   const [ showTypeSchool, setShowTypeSchool ] = useState(false)
   const [ showTypeWork, setShowTypeWork ] = useState(false)
   const [ showTypeHome, setShowTypeHome ] = useState(false)
+  const [ showTypeStar, setShowTypeStar ] = useState(false)
+
+
+  const [ showTaskDate, setShowTaskDate ] = useState(`Today ${new Date().toJSON().slice(0,10).replace(/-/g,'-')}`)
 
 
   /* useEffect(() => {
@@ -101,16 +106,18 @@ function App() {
     <>
       <Hearder
       CardData={data} filterTaskByType={filterTaskByType} setFilterTaskByType={setFilterTaskByType} setIsFilter={setIsFilter} setData={setData} filterTaskByDate={filterTaskByDate}
-      showTypeSchool={showTypeSchool} setShowTypeSchool={setShowTypeSchool} showTypeWork={showTypeWork} setShowTypeWork={setShowTypeWork} showTypeHome={showTypeHome} setShowTypeHome={setShowTypeHome}
+      showTypeSchool={showTypeSchool} setShowTypeSchool={setShowTypeSchool} showTypeWork={showTypeWork} setShowTypeWork={setShowTypeWork} showTypeHome={showTypeHome} setShowTypeHome={setShowTypeHome} showTypeStar={showTypeStar} setShowTypeStar={setShowTypeStar}
       /* numberOfSchool={numberOfSchool} numberOfWork={numberOfWork} numberOfHome={numberOfHome} numberOfDone={numberOfDone}
       numberOfTodo={numberOfTodo} */ setFilingState={setFilingState} filtingState={filtingState} 
       /* numberOfPast={numberOfPast} numberOfToday={numberOfToday} numberOfFuture={numberOfFuture} */ 
+      showTaskDate={showTaskDate} setShowTaskDate={setShowTaskDate}
       />
       <Body
-      isFilter={isFilter} CardData={data} filterTaskByType={filterTaskByType} setData={setData} submittingStatue={submittingStatue} setFilterTaskByType={setFilterTaskByType} setStatus={setStatus} filterTaskByDate={filterTaskByDate} setFilterTaskByDate={setFilterTaskByDate}
-      showTypeSchool={showTypeSchool} setShowTypeSchool={setShowTypeSchool} showTypeWork={showTypeWork} setShowTypeWork={setShowTypeWork} showTypeHome={showTypeHome} setShowTypeHome={setShowTypeHome}
+      isFilter={isFilter} CardData={data} filterTaskByType={filterTaskByType} setData={setData} submittingStatue={submittingStatue} setFilterTaskByType={setFilterTaskByType} setStatus={setStatus} setStar={setStar} filterTaskByDate={filterTaskByDate} setFilterTaskByDate={setFilterTaskByDate}
+      showTypeSchool={showTypeSchool} setShowTypeSchool={setShowTypeSchool} showTypeWork={showTypeWork} setShowTypeWork={setShowTypeWork} showTypeHome={showTypeHome} setShowTypeHome={setShowTypeHome} showTypeStar={showTypeStar} setShowTypeStar={setShowTypeStar}
+      showTaskDate={showTaskDate} setShowTaskDate={setShowTaskDate}
       />
-      <Card data={data} setData={setData} submittingStatue={submittingStatue} status={status} />
+      <Card data={data} setData={setData} submittingStatue={submittingStatue} status={status} star={star} />
     </>
   );
 }
