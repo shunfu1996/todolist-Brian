@@ -8,11 +8,12 @@
 
 .card-box {
     border-style: groove;   
-    margin: 0;
+    margin: 10px;
     height: 50px;
     width: 100%;
     display: flex;
     align-items: center;
+    animation: fade-in 1s;
 }
 
 .add-task-button{
@@ -92,4 +93,10 @@
     background-color: grey;
 }
 
-
+/* button anti */
+.btn{
+    margin: 10px;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}

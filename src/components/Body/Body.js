@@ -9,10 +9,12 @@ import { MdExpandMore } from 'react-icons/md';
 
 
 export default function Body({
-    isFilter, CardData, filterTaskByType, setData, submittingStatue, setStatus, setStar, filterTaskByDate, setFilterTaskByDate, setFilterTaskByType,
+    CardData, filterTaskByType, setData, submittingStatue, setStatus, setStar, filterTaskByDate, setFilterTaskByDate, setFilterTaskByType,
     showTypeSchool, showTypeWork, showTypeHome, setShowTypeSchool, setShowTypeWork, setShowTypeHome,
     showTaskDate, setShowTaskDate,
-    showTypeStar
+    showTypeStar,
+    isFilter, setIsFilter,
+    add, setAdd
     }) {
     const [ dateList, setDateList ] = useState(false)
     /* const [ showTaskDate, setShowTaskDate ] = useState(`Today ${new Date().toJSON().slice(0,10).replace(/-/g,'-')}`) */
@@ -22,6 +24,10 @@ export default function Body({
         setDateList(!dateList)
     }
 
+    const handleStart = () => {
+        setAdd(false)
+    }
+ 
     useEffect(() => {
         setFilterTaskByType(filterTaskByDate)
     },[filterTaskByDate])
@@ -29,6 +35,20 @@ export default function Body({
     useEffect(() => {
         setDateList(false)
     },[showTypeStar])
+
+    /* useEffect(() => {
+        console.log(`test:${filterTaskByType}`)
+        console.log(filterTaskByType)
+        console.log((filterTaskByType.filter((task) => !task.status)).length)
+    }) */
+
+    useEffect(() => {
+        if((filterTaskByType.filter((task) => !task.status)).length === 0){
+            setIsFilter(true)
+        }else{
+            setIsFilter(false)
+        }
+    },[(filterTaskByType.filter((task) => !task.status)).length])
 
     /* useEffect(() => {
         if(showTypeSchool && showTypeWork && showTypeHome){
@@ -104,26 +124,35 @@ export default function Body({
                     <p className="list-name" >Todo</p>
                 </div>
             </div>
-            {filterTaskByType.map((task) => {
-                if(!task.status){
-                const { name, dueDate, type, description, id, status, star} = task;
-                return(
-                    <Task
-                        key={id}
-                        id={id}
-                        name={name}
-                        description={description}
-                        status={status}
-                        star={star}
-                        type={type}
-                        dueDate={dueDate}
-                        isFilter={isFilter} CardData={CardData} filterTaskByType={filterTaskByType}
-                        setData={setData} submittingStatue={submittingStatue}
-                        setFilterTaskByType={setFilterTaskByType} setStatus={setStatus} setStar={setStar}
-                    />
-                );}
-                return console.log("todo")
-            })}
+            <div>
+                {isFilter &&
+                    <div className="opening-task">
+                        <p>Are you ready to use Task Manager?</p>
+                        <button className="start-button" onClick={handleStart}  ><span>START</span></button>
+                    </div>
+                }
+                {filterTaskByType.map((task) => {
+                    if(!task.status){
+                    const { name, dueDate, type, description, id, status, star} = task;
+                    return(
+                        <Task
+                            key={id}
+                            id={id}
+                            name={name}
+                            description={description}
+                            status={status}
+                            star={star}
+                            type={type}
+                            dueDate={dueDate}
+                            isFilter={isFilter} CardData={CardData} filterTaskByType={filterTaskByType}
+                            setData={setData} submittingStatue={submittingStatue}
+                            setFilterTaskByType={setFilterTaskByType} setStatus={setStatus} setStar={setStar}
+                        />
+                    );
+                    }
+                    return console.log("todo")
+                })}
+            </div>
             <div>
                 <div>
                     <p className="list-name">Done</p>

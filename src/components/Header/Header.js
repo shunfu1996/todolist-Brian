@@ -22,8 +22,7 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
     const [ showTypeHome, setShowTypeHome ] = useState(false) */
     var nowDate = new Date().toJSON().slice(0,10).replace(/-/g,'-')
     const handleChooseUserList = () => {
-        setUserbutton(!userList)
-        setUserName()//can del  
+        setUserbutton(!userList) 
     }
 
     /* useEffect(()=>{
@@ -31,7 +30,7 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
     }) */
         
     useEffect (()=>{
-        console.log(`school:${showTypeSchool}`)
+        /* console.log(`school:${showTypeSchool}`) */
         if(showTypeWork && showTypeSchool && showTypeHome){
             setFilterTaskByType(filterTaskByDate)
         }else if(showTypeWork && showTypeSchool){
@@ -52,7 +51,7 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
     },[showTypeSchool])
 
     useEffect (()=>{
-        console.log(`work:${showTypeWork}`)
+        /* console.log(`work:${showTypeWork}`) */
         if(showTypeWork && showTypeSchool && showTypeHome){
             setFilterTaskByType(filterTaskByDate)
         }else if(showTypeWork && showTypeSchool){
@@ -73,7 +72,7 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
     },[showTypeWork])
 
     useEffect (()=>{
-        console.log(`home:${showTypeHome}`)
+        /* console.log(`home:${showTypeHome}`) */
         if(showTypeWork && showTypeSchool && showTypeHome ){
             setFilterTaskByType(filterTaskByDate)
         }else if(showTypeWork && showTypeSchool){
@@ -183,7 +182,7 @@ export default function Header({ CardData, setData, setFilterTaskByType, filterT
             <nav className='nav'>
                 <div className='topnav'>
                     <img src="https://img.icons8.com/clouds/100/000000/todo-list.png" id="Check" alt="Check" height={"100px"}/>
-                    <p>To Do list</p>
+                    <p>Task Manager</p>
                     <div className='button-right'>
                         <button className='user-button' onClick={handleChooseUserList} >{userName[0]}</button>
                     </div>

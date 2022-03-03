@@ -14,8 +14,7 @@ import { v4 } from 'uuid';
 import HeadShake from 'react-reveal/HeadShake';
 
 
-export default function Card({ data, setData, submittingStatue, status, star}) {
-    const [add, setAdd] = useState(true)
+export default function Card({ data, setData, submittingStatue, status, star, add, setAdd}) {
     const [typeButtonDetail, setTypeButtonDetail] = useState(false)
     const [dateButtonDetail, setDateButtonDetail] = useState(false)
     const [detailButtonDetail, setDetailButtonDetail] = useState(false)
@@ -109,7 +108,7 @@ export default function Card({ data, setData, submittingStatue, status, star}) {
         setDescription("");
         setName("");  
         setAdd(!add)
-        console.log(data)
+        /* console.log(data) */
     }
 } 
 
@@ -126,19 +125,18 @@ function validInput (data) {
                         A simple warning alert—check it out!
                     </div>
                 </HeadShake>
-                <div className="card-box">
+                <div>
                     { add &&
                     <>
-                        <button onClick={handleAddTask} className="add-task-button" >
+                        <button onClick={handleAddTask} className="btn" >
                             <IconContext.Provider value={{ size: "20px", className: "card-add-icon" }}>
                                 <GoPlus />
                             </IconContext.Provider>
                         </button>
-                        <p className="card-name">add task</p>
                     </>
                     }
                     { !add &&
-                    <>  
+                    <div className="card-box">  
                         <button onClick={handleAddTask} className="add-task-button" >
                             <IconContext.Provider value={{ size: "20px", className: "card-dash-icon" }}>
                                 <GoDash />
@@ -194,7 +192,7 @@ function validInput (data) {
                         {detailButtonDetail &&<div className="task-detail-box">
                             <textarea className="" aria-label="With textarea" id="newTaskDescription" placeholder="How to do the task" value={description} onChange={descriptionChange} ></textarea>
                         </div>}
-                    </>
+                    </div>
                     }
                 </div>
             </div>

@@ -20,7 +20,7 @@ function App() {
   const [ showTypeHome, setShowTypeHome ] = useState(false)
   const [ showTypeStar, setShowTypeStar ] = useState(false)
 
-
+  const [add, setAdd] = useState(true)
   const [ showTaskDate, setShowTaskDate ] = useState(`Today ${new Date().toJSON().slice(0,10).replace(/-/g,'-')}`)
 
 
@@ -113,11 +113,13 @@ function App() {
       showTaskDate={showTaskDate} setShowTaskDate={setShowTaskDate}
       />
       <Body
-      isFilter={isFilter} CardData={data} filterTaskByType={filterTaskByType} setData={setData} submittingStatue={submittingStatue} setFilterTaskByType={setFilterTaskByType} setStatus={setStatus} setStar={setStar} filterTaskByDate={filterTaskByDate} setFilterTaskByDate={setFilterTaskByDate}
+      CardData={data} filterTaskByType={filterTaskByType} setData={setData} submittingStatue={submittingStatue} setFilterTaskByType={setFilterTaskByType} setStatus={setStatus} setStar={setStar} filterTaskByDate={filterTaskByDate} setFilterTaskByDate={setFilterTaskByDate}
       showTypeSchool={showTypeSchool} setShowTypeSchool={setShowTypeSchool} showTypeWork={showTypeWork} setShowTypeWork={setShowTypeWork} showTypeHome={showTypeHome} setShowTypeHome={setShowTypeHome} showTypeStar={showTypeStar} setShowTypeStar={setShowTypeStar}
       showTaskDate={showTaskDate} setShowTaskDate={setShowTaskDate}
+      isFilter={isFilter} setIsFilter={setIsFilter}
+      add={add} setAdd={setAdd}
       />
-      <Card data={data} setData={setData} submittingStatue={submittingStatue} status={status} star={star} />
+      <Card data={data} setData={setData} submittingStatue={submittingStatue} status={status} star={star} add={add} setAdd={setAdd} />
     </>
   );
 }

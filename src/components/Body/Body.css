@@ -9,6 +9,20 @@
     display: inline;
 }
 
+.opening-task {   
+    border-top: solid 1px gray; 
+    border-bottom: solid 1px gray; 
+    display: flex;
+    line-height: 60px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+
+    /* margin-right: 20px; */
+    /* ★ */
+}
+
+
 .datee {
     display: inline;
 }
@@ -45,3 +59,44 @@
 .disabled{
     cursor: no-drop;
 }
+
+
+/* anti */
+.start-button {
+    border-radius: 14px;
+    background-color: #2874A6;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 15px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 15px;
+  }
+  
+  .start-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .start-button span:after {
+    content: '\26DB';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: 10px;
+    transition: 0.5s;
+  }
+  
+  .start-button:hover span {
+    padding-right: 35px;
+  }
+  
+  .start-button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
