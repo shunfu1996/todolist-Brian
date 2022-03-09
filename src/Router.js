@@ -1,5 +1,6 @@
 import React from "react";
 import App from './App';
+import Login from "./components/Login/Login";
 import {
   BrowserRouter as Router,
   Routes,
@@ -17,7 +18,7 @@ export default function RouterReact() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/project">About</Link>
+              <Link to="/login">login</Link>
             </li>
             <li>
               <Link to="/contact">Users</Link>
@@ -29,7 +30,7 @@ export default function RouterReact() {
             renders the first one that matches the current URL. */}
         <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/project" element={<App /> } />
+            <Route path="/login" element={<Login /> } />
             <Route path="/contact" element={<App />} />
         </Routes>
       </div>
