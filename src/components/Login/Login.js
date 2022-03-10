@@ -10,7 +10,8 @@ export default function Login() {
 
     const styles = useSpring({
         backgroundColor: test ? "blue" : "red",
-        fontSize: test ? 50 : 20 ,
+        fontSize: test ? 50 : 20,
+        config: { duration: 550 }
         })
     return(
         <>
